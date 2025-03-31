@@ -146,14 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Ana menüye dön
-    function backToMenu() {
-        learningArea.style.display = 'none';
-        topicsList.style.display = 'grid';
+    window.backToMenu = function() {
+        document.querySelector('.learning-area').style.display = 'none';
+        document.querySelector('.topics-list').style.display = 'grid';
         currentTopic = null;
         currentSubTopic = null;
         currentExampleIndex = 0;
         renderTopics();
-    }
+    };
 
     // Matrix arka plan animasyonu
     function createMatrixBackground() {
