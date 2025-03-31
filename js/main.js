@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             card.innerHTML = `
                 <h3>${topic.title}</h3>
-                <p>${topic.description}</p>
+                <p>${topic.shortDescription}</p>
                 ${isCompleted ? '<span class="completed">✓ Tamamlandı</span>' : ''}
             `;
             card.addEventListener('click', () => loadTopic(topic));
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
             codeOutput.textContent = output;
 
             const currentExercise = currentSubTopic.exercises[currentExampleIndex];
-            if (output.trim() === currentExercise.expectedOutput) {
+            if (checkOutput(code, currentExercise.expectedOutput)) {
                 updatePoints(currentTopic.id, currentSubTopic.id, currentExercise.id, currentExercise.points);
                 
                 if (currentExampleIndex < currentSubTopic.exercises.length - 1) {
@@ -186,15 +186,31 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(createMatrixText, 50);
     }
 
-    // Basit Python çıktı simülasyonu
+    // Çıktı kontrolünü güncelle
+    function checkOutput(code, expectedOutput) {
+        try {
+            const output = simulatePythonOutput(code);
+            return output.trim() === expectedOutput.trim();
+        } catch (error) {
+            return false;
+        }
+    }
+
+    // Python çıktı simülasyonunu geliştir
     function simulatePythonOutput(code) {
         if (code.includes('print(')) {
-            const match = code.match(/print\(['"](.*)['"]\)/);
+            // Daha gelişmiş bir regex ile çıktıyı kontrol et
+            const match = code.match(/print\((.*)\)/);
             if (match) {
-                return match[1];
+                let output = match[1];
+                // Tırnak işaretlerini temizle
+                output = output.replace(/['"]/g, '');
+                // Virgülle ayrılan değerleri boşlukla birleştir
+                output = output.split(',').map(s => s.trim()).join(' ');
+                return output;
             }
         }
-        return 'Hata: Geçersiz kod';
+        throw new Error('Geçersiz kod');
     }
 
     // Sayfa yüklendiğinde

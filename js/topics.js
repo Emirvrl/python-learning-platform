@@ -2,33 +2,25 @@ const pythonTopics = [
     {
         id: 1,
         title: "Print Komutu",
+        shortDescription: "Ekrana çıktı verme",
         description: `Python'da print() fonksiyonu, ekrana çıktı vermek için kullanılır. 
         
 Temel sözdizimi:
 print("Metin")  # Metin çıktısı
 print(42)       # Sayı çıktısı
-print("Sayı:", 42)  # Birden fazla değer
-
-Print fonksiyonu, programınızın çıktılarını görüntülemek, hata ayıklama yapmak ve kullanıcıya bilgi göstermek için kullanılır.`,
+print("Sayı:", 42)  # Birden fazla değer`,
         subTopics: [
             {
                 id: "1.1",
                 title: "Temel Print Kullanımı",
-                description: "Print fonksiyonunun en temel kullanımı metin (string) ve sayıları ekrana yazdırmaktır.",
+                description: "Print fonksiyonunun en temel kullanımı",
                 examples: [
                     {
                         id: 1,
-                        description: "Metin yazdırma:",
-                        code: 'print("Merhaba Dünya")',
-                        output: "Merhaba Dünya",
-                        points: 5
-                    },
-                    {
-                        id: 2,
-                        description: "Sayı yazdırma:",
-                        code: 'print(42)',
-                        output: "42",
-                        points: 5
+                        description: "Örnek Kullanım:",
+                        code: 'print("Merhaba Python")',
+                        output: "Merhaba Python",
+                        isVisible: true
                     }
                 ],
                 exercises: [
@@ -37,14 +29,9 @@ Print fonksiyonu, programınızın çıktılarını görüntülemek, hata ayıkl
                         question: "Ekrana 'Python Öğreniyorum!' yazısını yazdırın",
                         expectedOutput: "Python Öğreniyorum!",
                         hints: ["Print fonksiyonunu kullanın", "Metni tırnak içine alın"],
-                        points: 10
-                    },
-                    {
-                        id: 2,
-                        question: "Ekrana kendi adınızı yazdırın",
-                        expectedOutput: "Ahmet",
-                        hints: ["Adınızı tırnak içinde yazın"],
-                        points: 10
+                        points: 10,
+                        solution: 'print("Python Öğreniyorum!")',
+                        isVisible: false
                     }
                 ]
             },

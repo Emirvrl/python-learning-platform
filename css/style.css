@@ -43,7 +43,7 @@ main {
 
 .topic-card {
     background: white;
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     cursor: pointer;
@@ -52,6 +52,16 @@ main {
 
 .topic-card:hover {
     transform: translateY(-2px);
+}
+
+.topic-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.topic-card p {
+    color: #666;
+    font-size: 1rem;
 }
 
 .learning-area {
