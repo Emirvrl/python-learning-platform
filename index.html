@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Öğrenme Platformu</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">PythonÖğren</div>
+        <div class="user-info">
+            <span class="points">0 Puan</span>
+            <span class="progress">İlerleme: 0%</span>
+        </div>
+    </nav>
+
+    <main>
+        <div class="topics-list">
+            <!-- Konular dinamik olarak buraya eklenecek -->
+        </div>
+
+        <div class="learning-area" style="display: none;">
+            <div class="theory-section">
+                <h2 id="topic-title"></h2>
+                <p id="topic-description"></p>
+            </div>
+
+            <div class="practice-section">
+                <div class="question-area">
+                    <h3>Alıştırma</h3>
+                    <p id="current-question"></p>
+                </div>
+                <div class="code-editor">
+                    <!-- CodeMirror editör buraya eklenecek -->
+                </div>
+                <button id="run-code">Kodu Çalıştır</button>
+                <div class="output-area">
+                    <h4>Çıktı:</h4>
+                    <pre id="code-output"></pre>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+    <script src="js/topics.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 
