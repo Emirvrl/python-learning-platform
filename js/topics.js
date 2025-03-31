@@ -91,21 +91,45 @@ Ayrıca özel karakterler kullanarak satır atlama (\\n) ve sekme (\\t) ekleyebi
     {
         id: 2,
         title: "Değişkenler ve Veri Tipleri",
-        description: "Python'da değişkenler ve temel veri tiplerini öğrenin.",
+        description: `Python'da değişkenler, verileri saklamak için kullanılan yapılardır. 
+        
+Temel sözdizimi:
+degisken_adi = deger
+
+Python'da yaygın kullanılan veri tipleri:
+- int: Tam sayılar (1, -5, 1000)
+- float: Ondalıklı sayılar (3.14, -0.001)
+- str: Metinler ("Merhaba", 'Python')
+- bool: Mantıksal değerler (True, False)
+
+Değişken isimlendirme kuralları:
+- Harf veya alt çizgi ile başlamalı
+- Rakam içerebilir ama rakamla başlayamaz
+- Büyük-küçük harf duyarlıdır (age ≠ Age)`,
         subTopics: [
             {
                 id: "2.1",
                 title: "Temel Veri Tipleri",
-                description: "Python'daki temel veri tipleri: int, float, str, bool",
+                description: "Python'daki temel veri tiplerini ve kullanımlarını öğrenin.",
                 examples: [
                     {
                         id: 1,
                         description: "Sayısal veri tipleri:",
-                        code: `sayi = 42          # int (tam sayı)
-ondalik = 3.14     # float (ondalıklı sayı)
-print(type(sayi))
-print(type(ondalik))`,
+                        code: `tam_sayi = 42          # int
+ondalik_sayi = 3.14    # float
+print(type(tam_sayi))
+print(type(ondalik_sayi))`,
                         output: "<class 'int'>\n<class 'float'>",
+                        points: 15
+                    },
+                    {
+                        id: 2,
+                        description: "Metin ve mantıksal veri tipleri:",
+                        code: `metin = "Python"       # str
+dogru_mu = True        # bool
+print(type(metin))
+print(type(dogru_mu))`,
+                        output: "<class 'str'>\n<class 'bool'>",
                         points: 15
                     }
                 ],
@@ -114,8 +138,58 @@ print(type(ondalik))`,
                         id: 1,
                         question: "Bir tam sayı ve bir ondalıklı sayı tanımlayıp türlerini yazdırın",
                         expectedOutput: "<class 'int'>\n<class 'float'>",
-                        hints: ["type() fonksiyonunu kullanın"],
+                        hints: ["type() fonksiyonunu kullanın", "Sayıları değişkenlere atayın"],
                         points: 20
+                    },
+                    {
+                        id: 2,
+                        question: "Adınızı bir değişkene atayıp türünü yazdırın",
+                        expectedOutput: "<class 'str'>",
+                        hints: ["Metinler tırnak içinde yazılır", "type() ile türünü kontrol edin"],
+                        points: 20
+                    }
+                ]
+            },
+            {
+                id: "2.2",
+                title: "Tip Dönüşümleri",
+                description: "Veri tipleri arasında dönüşüm yapma yöntemleri",
+                examples: [
+                    {
+                        id: 1,
+                        description: "Sayıdan metine dönüşüm:",
+                        code: `sayi = 42
+metin = str(sayi)
+print(type(metin))
+print(metin + " yaşında")`,
+                        output: "<class 'str'>\n42 yaşında",
+                        points: 20
+                    },
+                    {
+                        id: 2,
+                        description: "Metinden sayıya dönüşüm:",
+                        code: `metin_sayi = "3.14"
+sayi = float(metin_sayi)
+print(type(sayi))
+print(sayi * 2)`,
+                        output: "<class 'float'>\n6.28",
+                        points: 20
+                    }
+                ],
+                exercises: [
+                    {
+                        id: 1,
+                        question: "Verilen '42' metnini tam sayıya çevirip 8 ile çarpın",
+                        expectedOutput: "336",
+                        hints: ["int() fonksiyonunu kullanın", "Sonucu print ile yazdırın"],
+                        points: 25
+                    },
+                    {
+                        id: 2,
+                        question: "15 sayısını metne çevirip başına 'Sayı: ' ekleyerek yazdırın",
+                        expectedOutput: "Sayı: 15",
+                        hints: ["str() ile sayıyı metne çevirin", "İki metni + ile birleştirin"],
+                        points: 25
                     }
                 ]
             }

@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTopics();
     };
 
-    // Matrix arka plan animasyonu
+    // Matrix arka plan animasyonunu güncelle
     function createMatrixBackground() {
         const background = document.createElement('div');
         background.className = 'code-background';
@@ -166,21 +166,24 @@ document.addEventListener('DOMContentLoaded', () => {
             text.className = 'matrix-text';
             text.style.left = Math.random() * window.innerWidth + 'px';
             text.style.top = -20 + 'px';
-            text.textContent = Math.random().toString(36).substring(2, 3);
+            // Rastgele 0 ve 1'ler
+            text.textContent = Math.random() > 0.5 ? "0" : "1";
             background.appendChild(text);
 
             let pos = -20;
+            const speed = 3; // Daha hızlı düşüş
             const interval = setInterval(() => {
-                pos += 2;
+                pos += speed;
                 text.style.top = pos + 'px';
                 if (pos > window.innerHeight) {
                     clearInterval(interval);
                     text.remove();
                 }
-            }, 50);
+            }, 20); // Daha sık güncelleme
         }
 
-        setInterval(createMatrixText, 100);
+        // Daha sık karakter oluştur
+        setInterval(createMatrixText, 50);
     }
 
     // Basit Python çıktı simülasyonu

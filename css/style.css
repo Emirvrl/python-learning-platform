@@ -145,7 +145,7 @@ main {
     background-color: #00C851;
 }
 
-/* Animasyonlu arka plan */
+/* Matrix arka plan stillerini güncelle */
 .code-background {
     position: fixed;
     top: 0;
@@ -153,17 +153,18 @@ main {
     width: 100%;
     height: 100%;
     z-index: -1;
-    opacity: 0.1;
-    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
+    opacity: 0.15; /* Biraz daha belirgin */
+    background: #000; /* Tam siyah arka plan */
 }
 
 .matrix-text {
     position: absolute;
-    color: #0F0;
+    color: #0F0; /* Matrix yeşili */
     font-family: 'Courier New', monospace;
-    font-size: 14px;
+    font-size: 20px; /* Daha büyük karakterler */
     white-space: nowrap;
-    text-shadow: 0 0 5px #0F0;
+    text-shadow: 0 0 8px #0F0; /* Daha parlak glow efekti */
+    font-weight: bold; /* Daha kalın yazı */
 }
 
 .example-code {
