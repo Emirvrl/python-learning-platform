@@ -2,51 +2,67 @@ const pythonTopics = [
     {
         id: 1,
         title: "Print Komutu",
-        description: "Print komutu, Python'da ekrana çıktı vermek için kullanılır.",
-        examples: [
+        description: "Python'da ekrana çıktı vermeyi öğrenin.",
+        subTopics: [
             {
-                id: 1,
-                description: "Basit metin yazdırma:",
-                code: 'print("Merhaba Dünya")',
-                output: "Merhaba Dünya",
-                points: 5
+                id: "1.1",
+                title: "Temel Print Kullanımı",
+                description: "Print fonksiyonunun temel kullanımı",
+                examples: [
+                    {
+                        id: 1,
+                        description: "Metin yazdırma:",
+                        code: 'print("Merhaba Dünya")',
+                        output: "Merhaba Dünya",
+                        points: 5
+                    },
+                    {
+                        id: 2,
+                        description: "Sayı yazdırma:",
+                        code: 'print(42)',
+                        output: "42",
+                        points: 5
+                    }
+                ],
+                exercises: [
+                    {
+                        id: 1,
+                        question: "Ekrana 'Python Öğreniyorum!' yazısını yazdırın",
+                        expectedOutput: "Python Öğreniyorum!",
+                        hints: ["Print fonksiyonunu kullanın", "Metni tırnak içine alın"],
+                        points: 10
+                    }
+                ]
             },
             {
-                id: 2,
-                description: "Sayı ve metin birlikte:",
-                code: 'print("Sayı:", 42)',
-                output: "Sayı: 42",
-                points: 10
-            },
-            {
-                id: 3,
-                description: "Çoklu değer yazdırma:",
-                code: 'print("Python", "Öğreniyorum", 2023)',
-                output: "Python Öğreniyorum 2023",
-                points: 15
-            }
-        ],
-        exercises: [
-            {
-                id: 1,
-                question: "Ekrana 'Merhaba Python!' yazısını yazdırın",
-                expectedOutput: "Merhaba Python!",
-                hints: ["Print fonksiyonunu kullanın", "Metni tırnak içine alın"],
-                points: 10
-            },
-            {
-                id: 2,
-                question: "Adınızı ve yaşınızı aynı satırda yazdırın (örn: 'Ahmet: 25')",
-                expectedOutput: "Ahmet: 25",
-                hints: ["Virgül kullanarak birden fazla değer yazdırabilirsiniz"],
-                points: 15
+                id: "1.2",
+                title: "Gelişmiş Print Kullanımı",
+                description: "Print fonksiyonunun gelişmiş özellikleri",
+                examples: [
+                    {
+                        id: 1,
+                        description: "Birden fazla değer yazdırma:",
+                        code: 'print("Sayı:", 42)',
+                        output: "Sayı: 42",
+                        points: 10
+                    }
+                ],
+                exercises: [
+                    {
+                        id: 1,
+                        question: "Adınızı ve yaşınızı aynı satırda yazdırın (örn: 'Ahmet: 25')",
+                        expectedOutput: "Ahmet: 25",
+                        hints: ["Virgül kullanarak birden fazla değer yazdırabilirsiniz"],
+                        points: 15
+                    }
+                ]
             }
         ]
     },
     {
         id: 2,
         title: "Değişkenler ve Veri Tipleri",
-        description: "Python'da değişkenler ve temel veri tipleri hakkında bilgi edineceksiniz.",
+        description: "Python'da değişkenler ve temel veri tiplerini öğrenin.",
         subTopics: [
             {
                 id: "2.1",
@@ -61,16 +77,7 @@ ondalik = 3.14     # float (ondalıklı sayı)
 print(type(sayi))
 print(type(ondalik))`,
                         output: "<class 'int'>\n<class 'float'>",
-                        points: 5
-                    },
-                    {
-                        id: 2,
-                        description: "Metin (string) veri tipi:",
-                        code: `mesaj = "Merhaba"
-print(type(mesaj))
-print(len(mesaj))`,
-                        output: "<class 'str'>\n7",
-                        points: 5
+                        points: 15
                     }
                 ],
                 exercises: [
@@ -78,56 +85,49 @@ print(len(mesaj))`,
                         id: 1,
                         question: "Bir tam sayı ve bir ondalıklı sayı tanımlayıp türlerini yazdırın",
                         expectedOutput: "<class 'int'>\n<class 'float'>",
-                        hints: ["type() fonksiyonunu kullanın", "Sayıları print(type(degisken)) şeklinde yazdırın"],
-                        points: 10
+                        hints: ["type() fonksiyonunu kullanın"],
+                        points: 20
                     }
                 ]
-            },
-            {
-                id: "2.2",
-                title: "Tip Dönüşümleri",
-                description: "Veri tipleri arasında dönüşüm yapma",
-                examples: [
-                    {
-                        id: 1,
-                        description: "String'den sayıya dönüşüm:",
-                        code: `sayi_metin = "42"
-sayi = int(sayi_metin)
-print(type(sayi))`,
-                        output: "<class 'int'>",
-                        points: 10
-                    }
-                ],
-                exercises: [
-                    {
-                        id: 1,
-                        question: "Verilen '3.14' metnini float tipine dönüştürüp yazdırın",
-                        expectedOutput: "3.14",
-                        hints: ["float() fonksiyonunu kullanın"],
-                        points: 15
-                    }
-                ]
-            }
-        ],
-        exercises: [
-            {
-                id: 1,
-                question: "Adınızı bir değişkene atayıp ekrana yazdırın",
-                expectedOutput: "Ahmet",
-                hints: ["Değişken adı anlamlı olmalı", "String değişkenler tırnak içinde yazılır"],
-                points: 10
-            },
-            {
-                id: 2,
-                question: "Yaşınızı bir değişkene atayıp, yaşınızın bir yıl sonraki halini hesaplayıp yazdırın",
-                expectedOutput: "26",
-                hints: ["Matematiksel işlem yapabilirsiniz", "Sayısal değişkenler tırnak içinde yazılmaz"],
-                points: 15
             }
         ]
     },
     {
         id: 3,
+        title: "Koşul İfadeleri",
+        description: "if, elif ve else yapılarını öğrenin.",
+        subTopics: [
+            {
+                id: "3.1",
+                title: "if-else Yapısı",
+                description: "Temel koşul ifadeleri",
+                examples: [
+                    {
+                        id: 1,
+                        description: "Basit if-else kullanımı:",
+                        code: `yas = 18
+if yas >= 18:
+    print("Ehliyet alabilirsiniz")
+else:
+    print("Ehliyet alamazsınız")`,
+                        output: "Ehliyet alabilirsiniz",
+                        points: 20
+                    }
+                ],
+                exercises: [
+                    {
+                        id: 1,
+                        question: "Sayının pozitif olup olmadığını kontrol eden kodu yazın",
+                        expectedOutput: "Pozitif sayı",
+                        hints: ["if kullanın", "Sayıyı 0 ile karşılaştırın"],
+                        points: 25
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        id: 4,
         title: "Matematiksel İşlemler",
         description: "Python'da toplama, çıkarma, çarpma, bölme gibi temel matematiksel işlemleri öğrenin.",
         examples: [
@@ -140,100 +140,6 @@ print(type(sayi))`,
             expectedOutput: "15",
             hints: ["Çarpma işlemi için * işareti kullanılır"]
         }
-    },
-    {
-        id: 4,
-        title: "Koşul İfadeleri",
-        description: "Python'da karar yapıları ve koşul ifadelerini öğrenin.",
-        subTopics: [
-            {
-                id: "4.1",
-                title: "if-else Yapısı",
-                description: "Temel koşul ifadeleri ve karar yapıları",
-                examples: [
-                    {
-                        id: 1,
-                        description: "Basit if-else kullanımı:",
-                        code: `yas = 18
-if yas >= 18:
-    print("Ehliyet alabilirsiniz")
-else:
-    print("Ehliyet alamazsınız")`,
-                        output: "Ehliyet alabilirsiniz",
-                        points: 10
-                    },
-                    {
-                        id: 2,
-                        description: "Karşılaştırma operatörleri:",
-                        code: `sayi = 5
-if sayi > 0:
-    print("Pozitif")
-elif sayi < 0:
-    print("Negatif")
-else:
-    print("Sıfır")`,
-                        output: "Pozitif",
-                        points: 15
-                    }
-                ],
-                exercises: [
-                    {
-                        id: 1,
-                        question: "Girilen sayının tek mi çift mi olduğunu kontrol eden kodu yazın",
-                        expectedOutput: "Çift sayı",
-                        hints: ["Modül operatörü (%) kullanın", "Sayı 2'ye tam bölünüyorsa çifttir"],
-                        points: 20
-                    }
-                ]
-            },
-            {
-                id: "4.2",
-                title: "elif Kullanımı",
-                description: "Çoklu koşul ifadeleri",
-                examples: [
-                    {
-                        id: 1,
-                        description: "Not değerlendirme örneği:",
-                        code: `not_degeri = 85
-if not_degeri >= 90:
-    print("AA")
-elif not_degeri >= 80:
-    print("BA")
-elif not_degeri >= 70:
-    print("BB")
-else:
-    print("FF")`,
-                        output: "BA",
-                        points: 15
-                    }
-                ],
-                exercises: [
-                    {
-                        id: 1,
-                        question: "Girilen sayının pozitif, negatif veya sıfır olduğunu kontrol eden kodu yazın",
-                        expectedOutput: "Pozitif",
-                        hints: ["elif kullanarak üç durumu da kontrol edin"],
-                        points: 20
-                    }
-                ]
-            }
-        ],
-        exercises: [
-            {
-                id: 1,
-                question: "Kullanıcının yaşına göre 'Çocuk', 'Genç' veya 'Yetişkin' yazdıran kodu yazın (18 altı çocuk, 18-30 genç, 30 üstü yetişkin)",
-                expectedOutput: "Genç",
-                hints: ["Birden fazla koşul kullanın", "elif yapısını kullanın"],
-                points: 25
-            },
-            {
-                id: 2,
-                question: "İki sayıdan büyük olanı bulan kodu yazın",
-                expectedOutput: "En büyük sayı: 8",
-                hints: ["İki sayıyı karşılaştırın", "if-else yapısı kullanın"],
-                points: 20
-            }
-        ]
     },
     {
         id: 5,
