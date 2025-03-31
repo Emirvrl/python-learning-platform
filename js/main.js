@@ -10,6 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentTopic = null;
     let userPoints = 0;
     
+    // Puan sistemi güncellemesi
+    let completedExercises = {};
+
+    function updatePoints(topicId, exerciseId, points) {
+        const key = `topic_${topicId}_exercise_${exerciseId}`;
+        if (!completedExercises[key]) {
+            userPoints += points;
+            completedExercises[key] = true;
+            localStorage.setItem('completedExercises', JSON.stringify(completedExercises));
+            localStorage.setItem('userPoints', userPoints);
+            document.querySelector('.points').textContent = `${userPoints} Puan`;
+        }
+    }
+
     // CodeMirror editörünü oluştur
     const editor = CodeMirror(document.querySelector('.code-editor'), {
         mode: 'python',
@@ -68,10 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (output.trim() === currentTopic.exercise.expectedOutput) {
                 alert('Tebrikler! Doğru cevap!');
-                userPoints += 10;
-                document.querySelector('.points').textContent = `${userPoints} Puan`;
+                updatePoints(currentTopic.id, currentTopic.exercise.id, 10);
                 localStorage.setItem(`topic_${currentTopic.id}_completed`, 'true');
-                localStorage.setItem('userPoints', userPoints);
                 backToMenu();
                 renderTopics();
             }
@@ -97,4 +109,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Konuları yükle
     renderTopics();
+
+    // Bildirim gösterme fonksiyonu
+    function showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.opacity = '1';
+        }, 100);
+        
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        }, 3000);
+    }
+
+    // Matrix benzeri arka plan animasyonu
+    function createMatrixBackground() {
+        const background = document.createElement('div');
+        background.className = 'code-background';
+        document.body.appendChild(background);
+
+        function createMatrixText() {
+            const text = document.createElement('div');
+            text.className = 'matrix-text';
+            text.style.left = Math.random() * window.innerWidth + 'px';
+            text.style.top = -20 + 'px';
+            text.textContent = Math.random().toString(36).substring(2, 3);
+            background.appendChild(text);
+
+            let pos = -20;
+            const interval = setInterval(() => {
+                pos += 2;
+                text.style.top = pos + 'px';
+                if (pos > window.innerHeight) {
+                    clearInterval(interval);
+                    text.remove();
+                }
+            }, 50);
+        }
+
+        setInterval(createMatrixText, 100);
+    }
+
+    // Sayfa yüklendiğinde arka plan animasyonunu başlat
+    createMatrixBackground();
 }); 

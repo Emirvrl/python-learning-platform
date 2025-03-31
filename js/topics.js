@@ -2,31 +2,312 @@ const pythonTopics = [
     {
         id: 1,
         title: "Print Komutu",
-        description: "Print komutu, Python'da ekrana çıktı vermek için kullanılır. Metinleri, sayıları ve değişkenleri görüntüleyebilirsiniz.",
+        description: "Print komutu, Python'da ekrana çıktı vermek için kullanılır.",
         examples: [
-            'print("Merhaba Dünya")',
-            'print(42)',
-            'print("Sayı:", 5)'
+            {
+                id: 1,
+                description: "Basit metin yazdırma:",
+                code: 'print("Merhaba Dünya")',
+                output: "Merhaba Dünya",
+                points: 5
+            },
+            {
+                id: 2,
+                description: "Sayı ve metin birlikte:",
+                code: 'print("Sayı:", 42)',
+                output: "Sayı: 42",
+                points: 10
+            },
+            {
+                id: 3,
+                description: "Çoklu değer yazdırma:",
+                code: 'print("Python", "Öğreniyorum", 2023)',
+                output: "Python Öğreniyorum 2023",
+                points: 15
+            }
         ],
-        exercise: {
-            question: "Ekrana 'Python Öğreniyorum!' yazısını yazdıran kodu yazınız.",
-            expectedOutput: "Python Öğreniyorum!",
-            hints: ["Print fonksiyonunu kullanın", "Metni tırnak içine almayı unutmayın"]
-        }
+        exercises: [
+            {
+                id: 1,
+                question: "Ekrana 'Merhaba Python!' yazısını yazdırın",
+                expectedOutput: "Merhaba Python!",
+                hints: ["Print fonksiyonunu kullanın", "Metni tırnak içine alın"],
+                points: 10
+            },
+            {
+                id: 2,
+                question: "Adınızı ve yaşınızı aynı satırda yazdırın (örn: 'Ahmet: 25')",
+                expectedOutput: "Ahmet: 25",
+                hints: ["Virgül kullanarak birden fazla değer yazdırabilirsiniz"],
+                points: 15
+            }
+        ]
     },
     {
         id: 2,
-        title: "Değişkenler",
-        description: "Değişkenler, verileri saklamak için kullanılan yapılardır. Python'da değişken tanımlarken tip belirtmeye gerek yoktur.",
+        title: "Değişkenler ve Veri Tipleri",
+        description: "Python'da değişkenler ve temel veri tipleri hakkında bilgi edineceksiniz.",
+        subTopics: [
+            {
+                id: "2.1",
+                title: "Temel Veri Tipleri",
+                description: "Python'daki temel veri tipleri: int, float, str, bool",
+                examples: [
+                    {
+                        id: 1,
+                        description: "Sayısal veri tipleri:",
+                        code: `sayi = 42          # int (tam sayı)
+ondalik = 3.14     # float (ondalıklı sayı)
+print(type(sayi))
+print(type(ondalik))`,
+                        output: "<class 'int'>\n<class 'float'>",
+                        points: 5
+                    },
+                    {
+                        id: 2,
+                        description: "Metin (string) veri tipi:",
+                        code: `mesaj = "Merhaba"
+print(type(mesaj))
+print(len(mesaj))`,
+                        output: "<class 'str'>\n7",
+                        points: 5
+                    }
+                ],
+                exercises: [
+                    {
+                        id: 1,
+                        question: "Bir tam sayı ve bir ondalıklı sayı tanımlayıp türlerini yazdırın",
+                        expectedOutput: "<class 'int'>\n<class 'float'>",
+                        hints: ["type() fonksiyonunu kullanın", "Sayıları print(type(degisken)) şeklinde yazdırın"],
+                        points: 10
+                    }
+                ]
+            },
+            {
+                id: "2.2",
+                title: "Tip Dönüşümleri",
+                description: "Veri tipleri arasında dönüşüm yapma",
+                examples: [
+                    {
+                        id: 1,
+                        description: "String'den sayıya dönüşüm:",
+                        code: `sayi_metin = "42"
+sayi = int(sayi_metin)
+print(type(sayi))`,
+                        output: "<class 'int'>",
+                        points: 10
+                    }
+                ],
+                exercises: [
+                    {
+                        id: 1,
+                        question: "Verilen '3.14' metnini float tipine dönüştürüp yazdırın",
+                        expectedOutput: "3.14",
+                        hints: ["float() fonksiyonunu kullanın"],
+                        points: 15
+                    }
+                ]
+            }
+        ],
+        exercises: [
+            {
+                id: 1,
+                question: "Adınızı bir değişkene atayıp ekrana yazdırın",
+                expectedOutput: "Ahmet",
+                hints: ["Değişken adı anlamlı olmalı", "String değişkenler tırnak içinde yazılır"],
+                points: 10
+            },
+            {
+                id: 2,
+                question: "Yaşınızı bir değişkene atayıp, yaşınızın bir yıl sonraki halini hesaplayıp yazdırın",
+                expectedOutput: "26",
+                hints: ["Matematiksel işlem yapabilirsiniz", "Sayısal değişkenler tırnak içinde yazılmaz"],
+                points: 15
+            }
+        ]
+    },
+    {
+        id: 3,
+        title: "Matematiksel İşlemler",
+        description: "Python'da toplama, çıkarma, çarpma, bölme gibi temel matematiksel işlemleri öğrenin.",
         examples: [
-            'isim = "Ahmet"',
-            'yas = 25',
-            'print(isim, yas)'
+            'print(5 + 3)',
+            'print(10 - 4)',
+            'print(6 * 2)'
         ],
         exercise: {
-            question: "Bir 'mesaj' değişkeni oluşturun ve içine 'Merhaba!' yazıp ekrana yazdırın.",
-            expectedOutput: "Merhaba!",
-            hints: ["Önce değişkeni tanımlayın", "Sonra print ile yazdırın"]
+            question: "5 ile 3'ün çarpımını ekrana yazdıran kodu yazınız.",
+            expectedOutput: "15",
+            hints: ["Çarpma işlemi için * işareti kullanılır"]
         }
+    },
+    {
+        id: 4,
+        title: "Koşul İfadeleri",
+        description: "Python'da karar yapıları ve koşul ifadelerini öğrenin.",
+        subTopics: [
+            {
+                id: "4.1",
+                title: "if-else Yapısı",
+                description: "Temel koşul ifadeleri ve karar yapıları",
+                examples: [
+                    {
+                        id: 1,
+                        description: "Basit if-else kullanımı:",
+                        code: `yas = 18
+if yas >= 18:
+    print("Ehliyet alabilirsiniz")
+else:
+    print("Ehliyet alamazsınız")`,
+                        output: "Ehliyet alabilirsiniz",
+                        points: 10
+                    },
+                    {
+                        id: 2,
+                        description: "Karşılaştırma operatörleri:",
+                        code: `sayi = 5
+if sayi > 0:
+    print("Pozitif")
+elif sayi < 0:
+    print("Negatif")
+else:
+    print("Sıfır")`,
+                        output: "Pozitif",
+                        points: 15
+                    }
+                ],
+                exercises: [
+                    {
+                        id: 1,
+                        question: "Girilen sayının tek mi çift mi olduğunu kontrol eden kodu yazın",
+                        expectedOutput: "Çift sayı",
+                        hints: ["Modül operatörü (%) kullanın", "Sayı 2'ye tam bölünüyorsa çifttir"],
+                        points: 20
+                    }
+                ]
+            },
+            {
+                id: "4.2",
+                title: "elif Kullanımı",
+                description: "Çoklu koşul ifadeleri",
+                examples: [
+                    {
+                        id: 1,
+                        description: "Not değerlendirme örneği:",
+                        code: `not_degeri = 85
+if not_degeri >= 90:
+    print("AA")
+elif not_degeri >= 80:
+    print("BA")
+elif not_degeri >= 70:
+    print("BB")
+else:
+    print("FF")`,
+                        output: "BA",
+                        points: 15
+                    }
+                ],
+                exercises: [
+                    {
+                        id: 1,
+                        question: "Girilen sayının pozitif, negatif veya sıfır olduğunu kontrol eden kodu yazın",
+                        expectedOutput: "Pozitif",
+                        hints: ["elif kullanarak üç durumu da kontrol edin"],
+                        points: 20
+                    }
+                ]
+            }
+        ],
+        exercises: [
+            {
+                id: 1,
+                question: "Kullanıcının yaşına göre 'Çocuk', 'Genç' veya 'Yetişkin' yazdıran kodu yazın (18 altı çocuk, 18-30 genç, 30 üstü yetişkin)",
+                expectedOutput: "Genç",
+                hints: ["Birden fazla koşul kullanın", "elif yapısını kullanın"],
+                points: 25
+            },
+            {
+                id: 2,
+                question: "İki sayıdan büyük olanı bulan kodu yazın",
+                expectedOutput: "En büyük sayı: 8",
+                hints: ["İki sayıyı karşılaştırın", "if-else yapısı kullanın"],
+                points: 20
+            }
+        ]
+    },
+    {
+        id: 5,
+        title: "Döngüler",
+        description: "Python'da for ve while döngülerini öğrenin.",
+        subTopics: [
+            {
+                id: "5.1",
+                title: "for Döngüsü",
+                description: "Tekrarlı işlemler için for döngüsü kullanımı",
+                examples: [
+                    {
+                        id: 1,
+                        description: "Liste üzerinde döngü:",
+                        code: `sayilar = [1, 2, 3, 4, 5]
+for sayi in sayilar:
+    print(sayi)`,
+                        output: "1\n2\n3\n4\n5",
+                        points: 10
+                    },
+                    {
+                        id: 2,
+                        description: "range() kullanımı:",
+                        code: `for i in range(3):
+    print(f"Sayı: {i}")`,
+                        output: "Sayı: 0\nSayı: 1\nSayı: 2",
+                        points: 15
+                    }
+                ],
+                exercises: [
+                    {
+                        id: 1,
+                        question: "1'den 5'e kadar olan sayıların toplamını hesaplayan kodu yazın",
+                        expectedOutput: "Toplam: 15",
+                        hints: ["range() fonksiyonunu kullanın", "Toplam için bir değişken tanımlayın"],
+                        points: 20
+                    }
+                ]
+            },
+            {
+                id: "5.2",
+                title: "while Döngüsü",
+                description: "Koşula bağlı döngüler",
+                examples: [
+                    {
+                        id: 1,
+                        description: "Sayaç örneği:",
+                        code: `sayac = 0
+while sayac < 3:
+    print(f"Sayaç: {sayac}")
+    sayac += 1`,
+                        output: "Sayaç: 0\nSayaç: 1\nSayaç: 2",
+                        points: 15
+                    }
+                ],
+                exercises: [
+                    {
+                        id: 1,
+                        question: "1'den başlayarak kullanıcının girdiği sayıya kadar olan çift sayıları yazdıran kodu yazın",
+                        expectedOutput: "2 4 6 8 10",
+                        hints: ["while döngüsü kullanın", "Sayı çift mi kontrolü yapın"],
+                        points: 25
+                    }
+                ]
+            }
+        ],
+        exercises: [
+            {
+                id: 1,
+                question: "Çarpım tablosunu oluşturan kodu yazın (1x1'den 5x5'e kadar)",
+                expectedOutput: "1 x 1 = 1\n1 x 2 = 2\n...\n5 x 5 = 25",
+                hints: ["İç içe döngüler kullanın", "f-string ile formatlamayı kullanın"],
+                points: 30
+            }
+        ]
     }
 ]; 
