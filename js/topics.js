@@ -25,16 +25,29 @@ print("Sayı:", 42)  # Birden fazla değer`,
             videoUrl: "https://www.youtube.com/watch?v=example"
         },
         quizContent: {
+            title: "Print Komutu Testi",
+            description: "Print fonksiyonunu kullanarak aşağıdaki soruları cevaplayın.",
             questions: [
                 {
-                    question: "Ekrana 'Python Öğreniyorum!' yazısını yazdırın",
-                    expectedOutput: "Python Öğreniyorum!",
-                    points: 10
+                    id: 1,
+                    question: "Ekrana 'Merhaba Dünya!' yazdırın",
+                    expectedOutput: "Merhaba Dünya!",
+                    points: 10,
+                    hint: "print() fonksiyonunu kullanın"
                 },
                 {
-                    question: "Ekrana önce adınızı, sonra yaşınızı yazdırın (örn: 'Ahmet 25')",
+                    id: 2,
+                    question: "Adınızı ve yaşınızı aynı satırda yazdırın (örn: 'Ahmet 25')",
                     expectedOutput: "Ahmet 25",
-                    points: 15
+                    points: 15,
+                    hint: "print() içinde virgül kullanabilirsiniz"
+                },
+                {
+                    id: 3,
+                    question: "İki satıra 'Python' ve 'Öğreniyorum' yazdırın",
+                    expectedOutput: "Python\nÖğreniyorum",
+                    points: 20,
+                    hint: "\\n karakteri yeni satıra geçer"
                 }
             ]
         }

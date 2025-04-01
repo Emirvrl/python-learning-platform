@@ -37,25 +37,23 @@ nav {
 }
 
 main {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+    max-width: none;
+    margin: 0;
+    padding: 0;
 }
 
 .topics-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
+    padding: 1rem;
 }
 
 .topic-card {
-    background: white;
-    padding: 1.5rem;
+    width: 100%;
+    margin-bottom: 1rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.2s;
-    color: #333;
+    padding: 1.5rem;
 }
 
 .topic-card:hover {
@@ -268,6 +266,7 @@ main {
     --nav-text: white;
     --code-bg: #2d2d2d;
     --hint-bg: #fff3cd;
+    --border-color: #ddd;
 }
 
 [data-theme="dark"] {
@@ -278,6 +277,7 @@ main {
     --nav-text: #fff;
     --code-bg: #1a1a1a;
     --hint-bg: #2d2d2d;
+    --border-color: #444;
 }
 
 body {
@@ -392,16 +392,26 @@ input:checked + .slider .moon {
 }
 
 .learning-section, .quiz-section {
-    background: var(--card-bg);
+    flex: 1;
     padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    height: calc(100vh - 60px);
+}
+
+.learning-section {
+    border-right: 2px solid var(--border-color);
+    background: var(--card-bg);
+}
+
+.quiz-section {
+    background: var(--card-bg);
 }
 
 .learning-section h2, .quiz-section h2 {
-    margin-bottom: 1.5rem;
-    color: var(--text-color);
     text-align: center;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
 }
 
 .topic-card.learning {
@@ -438,20 +448,21 @@ input:checked + .slider .moon {
     transition: width 0.3s ease;
 }
 
-/* Mevcut stillerin başına ekleyin */
-.split-container {
-    display: flex;
-    gap: 2rem;
-    height: calc(100vh - 60px); /* nav yüksekliğini çıkar */
-    overflow: hidden;
+/* Scroll bar stilleri */
+.learning-section::-webkit-scrollbar,
+.quiz-section::-webkit-scrollbar {
+    width: 8px;
 }
 
-.learning-section, .quiz-section {
-    flex: 1;
-    padding: 2rem;
-    overflow-y: auto;
-    height: 100%;
-    background: var(--card-bg);
+.learning-section::-webkit-scrollbar-track,
+.quiz-section::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+.learning-section::-webkit-scrollbar-thumb,
+.quiz-section::-webkit-scrollbar-thumb {
+    background: var(--text-color);
+    border-radius: 4px;
 }
 
 /* Nav stillerini güncelle */
@@ -516,4 +527,52 @@ nav {
 .quiz-section::-webkit-scrollbar-thumb {
     background: var(--text-color);
     border-radius: 4px;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.points-badge {
+    background: #4CAF50;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.question-text {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.hint-box {
+    background: var(--hint-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    border-left: 4px solid #ffc107;
+}
+
+.quiz-area .code-editor {
+    margin: 1.5rem 0;
+}
+
+#check-answer {
+    background: #2196F3;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+#check-answer:hover {
+    background: #1976D2;
 } 

@@ -91,11 +91,84 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadQuizContent(topic) {
-        // Quiz içeriğini yükle
+        document.querySelector('.split-container').style.display = 'none';
+        document.querySelector('.quiz-area').style.display = 'block';
+        
+        const quizTitle = document.querySelector('#quiz-title');
+        const quizQuestion = document.querySelector('.quiz-question');
+        
+        quizTitle.textContent = topic.quizContent.title;
+        
+        let currentQuestionIndex = 0;
+        const questions = topic.quizContent.questions;
+        
+        function showQuestion(index) {
+            const question = questions[index];
+            quizQuestion.innerHTML = `
+                <div class="question-header">
+                    <h3>Soru ${index + 1}/${questions.length}</h3>
+                    <div class="points-badge">${question.points} Puan</div>
+                </div>
+                <p class="question-text">${question.question}</p>
+                <div class="hint-box">
+                    <p>🔍 İpucu: ${question.hint}</p>
+                </div>
+                <p class="expected-output">Beklenen Çıktı: ${question.expectedOutput}</p>
+            `;
+        }
+        
+        showQuestion(currentQuestionIndex);
+        
+        // CodeMirror editörünü oluştur
+        const quizEditor = CodeMirror(document.querySelector('.quiz-area .code-editor'), {
+            mode: 'python',
+            theme: 'monokai',
+            lineNumbers: true,
+            autoCloseBrackets: true,
+            indentUnit: 4,
+            tabSize: 4,
+            lineWrapping: true,
+            value: '# Kodunuzu buraya yazın'
+        });
+        
+        // Cevap kontrol butonu
+        document.querySelector('#check-answer').addEventListener('click', () => {
+            const code = quizEditor.getValue();
+            const output = simulatePythonOutput(code);
+            const question = questions[currentQuestionIndex];
+            
+            document.querySelector('#quiz-output').textContent = output;
+            
+            if (output.trim() === question.expectedOutput) {
+                // Doğru cevap
+                showNotification('Tebrikler! Doğru cevap!', 'success');
+                updateQuizProgress(topic.id, question.id, question.points);
+                
+                // Sonraki soruya geç
+                if (currentQuestionIndex < questions.length - 1) {
+                    currentQuestionIndex++;
+                    showQuestion(currentQuestionIndex);
+                    quizEditor.setValue('# Kodunuzu buraya yazın');
+                } else {
+                    showNotification('Tebrikler! Tüm soruları tamamladınız!', 'success');
+                    setTimeout(() => backToMenu(), 2000);
+                }
+            } else {
+                showNotification('Yanlış cevap. Tekrar deneyin!', 'error');
+            }
+        });
     }
 
     function getQuizProgress(topicId) {
-        // Quiz ilerlemesini hesapla ve döndür
+        const topic = pythonTopics.find(t => t.id === topicId);
+        if (!topic || !topic.quizContent || !topic.quizContent.questions) return 0;
+        
+        const totalQuestions = topic.quizContent.questions.length;
+        const completedQuestions = topic.quizContent.questions.filter(q => 
+            completedExercises[`quiz_${topicId}_question_${q.id}`]
+        ).length;
+        
+        return (completedQuestions / totalQuestions) * 100;
     }
 
     // Konunun tamamlanıp tamamlanmadığını kontrol et
@@ -168,6 +241,18 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('userPoints', userPoints);
             document.querySelector('.points').textContent = `${userPoints} Puan`;
             showNotification('Tebrikler! ' + points + ' puan kazandınız!', 'success');
+        }
+    }
+
+    // Quiz ilerlemesini güncelle
+    function updateQuizProgress(topicId, questionId, points) {
+        const key = `quiz_${topicId}_question_${questionId}`;
+        if (!completedExercises[key]) {
+            userPoints += points;
+            completedExercises[key] = true;
+            localStorage.setItem('completedExercises', JSON.stringify(completedExercises));
+            localStorage.setItem('userPoints', userPoints);
+            document.querySelector('.points').textContent = `${userPoints} Puan`;
         }
     }
 
