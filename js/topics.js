@@ -3,77 +3,41 @@ const pythonTopics = [
         id: 1,
         title: "Print Komutu",
         shortDescription: "Print Fonksiyonunun Öğrenilmesi",
-        description: `Python'da print() fonksiyonu, ekrana çıktı vermek için kullanılır. 
-        
+        learningContent: {
+            description: `Python'da print() fonksiyonu, ekrana çıktı vermek için kullanılır.
+            
 Temel sözdizimi:
 print("Metin")  # Metin çıktısı
 print(42)       # Sayı çıktısı
 print("Sayı:", 42)  # Birden fazla değer`,
-        subTopics: [
-            {
-                id: "1.1",
-                title: "Temel Print Kullanımı",
-                description: "Print fonksiyonunun en temel kullanımı",
-                examples: [
-                    {
-                        id: 1,
-                        description: "Örnek Kullanım:",
-                        code: 'print("Merhaba Python")',
-                        output: "Merhaba Python",
-                        isVisible: true
-                    }
-                ],
-                exercises: [
-                    {
-                        id: 1,
-                        question: "Ekrana 'Python Öğreniyorum!' yazısını yazdırın",
-                        expectedOutput: "Python Öğreniyorum!",
-                        hints: ["Print fonksiyonunu kullanın", "Metni tırnak içine alın"],
-                        points: 10,
-                        solution: 'print("Python Öğreniyorum!")',
-                        isVisible: false
-                    }
-                ]
-            },
-            {
-                id: "1.2",
-                title: "Gelişmiş Print Kullanımı",
-                description: `Print fonksiyonu birden fazla değeri virgülle ayırarak yazdırabilir.
-Ayrıca özel karakterler kullanarak satır atlama (\\n) ve sekme (\\t) ekleyebilirsiniz.`,
-                examples: [
-                    {
-                        id: 1,
-                        description: "Birden fazla değer yazdırma:",
-                        code: 'print("Sayı:", 42, "Metin:", "Python")',
-                        output: "Sayı: 42 Metin: Python",
-                        points: 10
-                    },
-                    {
-                        id: 2,
-                        description: "Özel karakterler kullanma:",
-                        code: 'print("Satır 1\\nSatır 2\\nSatır 3")',
-                        output: "Satır 1\nSatır 2\nSatır 3",
-                        points: 15
-                    }
-                ],
-                exercises: [
-                    {
-                        id: 1,
-                        question: "Adınızı ve yaşınızı aynı satırda yazdırın (örn: 'Ahmet: 25')",
-                        expectedOutput: "Ahmet: 25",
-                        hints: ["Virgül kullanarak birden fazla değer yazdırabilirsiniz"],
-                        points: 15
-                    },
-                    {
-                        id: 2,
-                        question: "İki satıra isim ve meslek yazdırın (örn: 'İsim: Ahmet\\nMeslek: Öğrenci')",
-                        expectedOutput: "İsim: Ahmet\nMeslek: Öğrenci",
-                        hints: ["\\n karakteri yeni satıra geçer"],
-                        points: 20
-                    }
-                ]
-            }
-        ]
+            examples: [
+                {
+                    description: "Metin yazdırma:",
+                    code: 'print("Merhaba Python")',
+                    output: "Merhaba Python"
+                },
+                {
+                    description: "Sayı yazdırma:",
+                    code: 'print(42)',
+                    output: "42"
+                }
+            ],
+            videoUrl: "https://www.youtube.com/watch?v=example"
+        },
+        quizContent: {
+            questions: [
+                {
+                    question: "Ekrana 'Python Öğreniyorum!' yazısını yazdırın",
+                    expectedOutput: "Python Öğreniyorum!",
+                    points: 10
+                },
+                {
+                    question: "Ekrana önce adınızı, sonra yaşınızı yazdırın (örn: 'Ahmet 25')",
+                    expectedOutput: "Ahmet 25",
+                    points: 15
+                }
+            ]
+        }
     },
     {
         id: 2,

@@ -19,8 +19,19 @@
     </nav>
 
     <main>
-        <div class="topics-list">
-            <!-- Konular dinamik olarak buraya eklenecek -->
+        <div class="main-menu">
+            <div class="learning-section">
+                <h2>Öğrenme Bölümü</h2>
+                <div class="topics-list learning">
+                    <!-- Öğrenme konuları buraya eklenecek -->
+                </div>
+            </div>
+            <div class="quiz-section">
+                <h2>Kendini Test Et</h2>
+                <div class="topics-list quiz">
+                    <!-- Quiz konuları buraya eklenecek -->
+                </div>
+            </div>
         </div>
 
         <div class="learning-area" style="display: none;">
@@ -45,6 +56,22 @@
                 </div>
             </div>
         </div>
+
+        <div class="quiz-area" style="display: none;">
+            <button class="back-button" onclick="backToMenu()">← Ana Menüye Dön</button>
+            <div class="quiz-content">
+                <h2 id="quiz-title"></h2>
+                <div class="quiz-question"></div>
+                <div class="code-editor">
+                    <!-- CodeMirror editör buraya eklenecek -->
+                </div>
+                <button id="check-answer">Cevabı Kontrol Et</button>
+                <div class="output-area">
+                    <h4>Çıktı:</h4>
+                    <pre id="quiz-output"></pre>
+                </div>
+            </div>
+        </div>
     </main>
     <div id="notifications-container"></div>
     <!-- CodeMirror JS -->
@@ -52,5 +79,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
     <script src="js/topics.js"></script>
     <script src="js/main.js"></script>
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round">
+                <span class="moon">🌙</span>
+                <span class="sun">☀️</span>
+            </div>
+        </label>
+    </div>
 </body>
 </html> 

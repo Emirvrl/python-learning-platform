@@ -27,20 +27,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Konuları listele
     function renderTopics() {
-        topicsList.innerHTML = '';
+        const learningList = document.querySelector('.topics-list.learning');
+        const quizList = document.querySelector('.topics-list.quiz');
+        
+        learningList.innerHTML = '';
+        quizList.innerHTML = '';
+        
         pythonTopics.forEach(topic => {
-            const card = document.createElement('div');
-            card.className = 'topic-card';
-            const isCompleted = isTopicCompleted(topic);
+            // Öğrenme kartı
+            const learningCard = createTopicCard(topic, 'learning');
+            learningCard.addEventListener('click', () => loadLearningContent(topic));
+            learningList.appendChild(learningCard);
             
-            card.innerHTML = `
-                <h3>${topic.title}</h3>
-                <p>${topic.shortDescription}</p>
-                ${isCompleted ? '<span class="completed">✓ Tamamlandı</span>' : ''}
-            `;
-            card.addEventListener('click', () => loadTopic(topic));
-            topicsList.appendChild(card);
+            // Quiz kartı
+            const quizCard = createTopicCard(topic, 'quiz');
+            quizCard.addEventListener('click', () => loadQuizContent(topic));
+            quizList.appendChild(quizCard);
         });
+    }
+
+    function createTopicCard(topic, type) {
+        const card = document.createElement('div');
+        card.className = `topic-card ${type}`;
+        const progress = type === 'quiz' ? getQuizProgress(topic.id) : '';
+        
+        card.innerHTML = `
+            <h3>${topic.title}</h3>
+            <p>${topic.shortDescription}</p>
+            ${progress ? `
+            <div class="quiz-progress">
+                <div class="quiz-progress-bar" style="width: ${progress}%"></div>
+            </div>
+            ` : ''}
+        `;
+        
+        return card;
+    }
+
+    function loadLearningContent(topic) {
+        document.querySelector('.main-menu').style.display = 'none';
+        document.querySelector('.learning-area').style.display = 'block';
+        document.querySelector('.theme-switch-wrapper').style.display = 'none';
+        
+        const content = topic.learningContent;
+        document.querySelector('.theory-section').innerHTML = `
+            <h2>${topic.title}</h2>
+            <p>${content.description}</p>
+            <div class="examples">
+                ${content.examples.map(example => `
+                    <div class="example">
+                        <h4>${example.description}</h4>
+                        <pre class="example-code">${example.code}</pre>
+                        <p>Çıktı: ${example.output}</p>
+                    </div>
+                `).join('')}
+            </div>
+            ${content.videoUrl ? `
+            <a href="${content.videoUrl}" target="_blank" class="youtube-link">
+                📺 Konu Anlatım Videosu
+            </a>
+            ` : ''}
+        `;
+    }
+
+    function loadQuizContent(topic) {
+        // Quiz içeriğini yükle
+    }
+
+    function getQuizProgress(topicId) {
+        // Quiz ilerlemesini hesapla ve döndür
     }
 
     // Konunun tamamlanıp tamamlanmadığını kontrol et
@@ -62,6 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         topicsList.style.display = 'none';
         learningArea.style.display = 'block';
+        
+        // Theme switch'i gizle
+        document.querySelector('.theme-switch-wrapper').style.display = 'none';
         
         updateTopicView();
     }
@@ -166,6 +224,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.backToMenu = function() {
         document.querySelector('.learning-area').style.display = 'none';
         document.querySelector('.topics-list').style.display = 'grid';
+        
+        // Theme switch'i göster
+        document.querySelector('.theme-switch-wrapper').style.display = 'flex';
+        
         currentTopic = null;
         currentSubTopic = null;
         currentExampleIndex = 0;
@@ -235,4 +297,27 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.points').textContent = `${userPoints} Puan`;
     createMatrixBackground();
     renderTopics();
+
+    // Dark Mode Switch
+    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            toggleSwitch.checked = true;
+        }
+    }
+
+    function switchTheme(e) {
+        if (e.target.checked) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        }
+    }
+
+    toggleSwitch.addEventListener('change', switchTheme);
 }); 

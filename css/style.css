@@ -8,6 +8,7 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4;
+    color: #333;
 }
 
 nav {
@@ -54,6 +55,7 @@ main {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     cursor: pointer;
     transition: transform 0.2s;
+    color: #333;
 }
 
 .topic-card:hover {
@@ -75,6 +77,7 @@ main {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: #333;
 }
 
 .code-editor {
@@ -254,4 +257,183 @@ main {
 .hints ul {
     margin-left: 1.5rem;
     margin-top: 0.5rem;
+}
+
+/* Dark mode için değişkenler */
+:root {
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --card-bg: white;
+    --nav-bg: #333;
+    --nav-text: white;
+    --code-bg: #2d2d2d;
+    --hint-bg: #fff3cd;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #fff;
+    --card-bg: #2d2d2d;
+    --nav-bg: #000;
+    --nav-text: #fff;
+    --code-bg: #1a1a1a;
+    --hint-bg: #2d2d2d;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+nav {
+    background-color: var(--nav-bg);
+    color: var(--nav-text);
+}
+
+.topic-card {
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+.learning-area {
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+/* Theme Switch Stili */
+.theme-switch-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    width: 60px;
+    position: relative;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+    border-radius: 50%;
+}
+
+.slider .sun, .slider .moon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+}
+
+.slider .sun {
+    right: 5px;
+}
+
+.slider .moon {
+    left: 5px;
+    display: none;
+}
+
+input:checked + .slider {
+    background-color: #66bb6a;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+input:checked + .slider .sun {
+    display: none;
+}
+
+input:checked + .slider .moon {
+    display: block;
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.main-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.learning-section, .quiz-section {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.learning-section h2, .quiz-section h2 {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.topic-card.learning {
+    border-left: 4px solid #4CAF50;
+}
+
+.topic-card.quiz {
+    border-left: 4px solid #2196F3;
+}
+
+.youtube-link {
+    display: block;
+    margin-top: 1rem;
+    color: #ff0000;
+    text-decoration: none;
+}
+
+.youtube-link:hover {
+    text-decoration: underline;
+}
+
+.quiz-progress {
+    height: 4px;
+    background: #eee;
+    margin-top: 1rem;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.quiz-progress-bar {
+    height: 100%;
+    background: #2196F3;
+    width: 0;
+    transition: width 0.3s ease;
 } 
