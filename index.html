@@ -12,6 +12,12 @@
 <body>
     <nav>
         <div class="logo">Python Öğreniyorum</div>
+        <div class="theme-switch-wrapper">
+            <select id="theme-select" class="theme-select">
+                <option value="light">☀️ Aydınlık Mod</option>
+                <option value="dark">🌙 Karanlık Mod</option>
+            </select>
+        </div>
         <div class="user-info">
             <span class="points">0 Puan</span>
             <span class="progress">İlerleme: 0%</span>
@@ -19,7 +25,7 @@
     </nav>
 
     <main>
-        <div class="main-menu">
+        <div class="split-container">
             <div class="learning-section">
                 <h2>Öğrenme Bölümü</h2>
                 <div class="topics-list learning">
@@ -79,14 +85,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
     <script src="js/topics.js"></script>
     <script src="js/main.js"></script>
-    <div class="theme-switch-wrapper">
-        <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div class="slider round">
-                <span class="moon">🌙</span>
-                <span class="sun">☀️</span>
-            </div>
-        </label>
-    </div>
 </body>
 </html> 

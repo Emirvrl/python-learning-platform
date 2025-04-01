@@ -298,26 +298,18 @@ document.addEventListener('DOMContentLoaded', () => {
     createMatrixBackground();
     renderTopics();
 
-    // Dark Mode Switch
-    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+    // Dark Mode Select
+    const themeSelect = document.querySelector('#theme-select');
     const currentTheme = localStorage.getItem('theme');
 
     if (currentTheme) {
         document.documentElement.setAttribute('data-theme', currentTheme);
-        if (currentTheme === 'dark') {
-            toggleSwitch.checked = true;
-        }
+        themeSelect.value = currentTheme;
     }
 
-    function switchTheme(e) {
-        if (e.target.checked) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-        }
-    }
-
-    toggleSwitch.addEventListener('change', switchTheme);
+    themeSelect.addEventListener('change', function(e) {
+        const theme = e.target.value;
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    });
 }); 
