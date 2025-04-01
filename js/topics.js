@@ -2,7 +2,7 @@ const pythonTopics = [
     {
         id: 1,
         title: "Print Komutu",
-        shortDescription: "Ekrana çıktı verme",
+        shortDescription: "Print Fonksiyonunun Öğrenilmesi",
         description: `Python'da print() fonksiyonu, ekrana çıktı vermek için kullanılır. 
         
 Temel sözdizimi:
@@ -78,6 +78,7 @@ Ayrıca özel karakterler kullanarak satır atlama (\\n) ve sekme (\\t) ekleyebi
     {
         id: 2,
         title: "Değişkenler ve Veri Tipleri",
+        shortDescription: "Python'da Veri Tiplerinin Öğrenilmesi",
         description: `Python'da değişkenler, verileri saklamak için kullanılan yapılardır. 
         
 Temel sözdizimi:
@@ -185,6 +186,7 @@ print(sayi * 2)`,
     {
         id: 3,
         title: "Koşul İfadeleri",
+        shortDescription: "if-else Yapılarının Öğrenilmesi",
         description: "if, elif ve else yapılarını öğrenin.",
         subTopics: [
             {
@@ -219,6 +221,7 @@ else:
     {
         id: 4,
         title: "Matematiksel İşlemler",
+        shortDescription: "Temel Matematik Operatörlerinin Öğrenilmesi",
         description: "Python'da toplama, çıkarma, çarpma, bölme gibi temel matematiksel işlemleri öğrenin.",
         examples: [
             'print(5 + 3)',
@@ -234,6 +237,7 @@ else:
     {
         id: 5,
         title: "Döngüler",
+        shortDescription: "Python'da Döngülerin Öğrenilmesi",
         description: "Python'da for ve while döngülerini öğrenin.",
         subTopics: [
             {

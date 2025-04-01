@@ -69,15 +69,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Konu görünümünü güncelle
     function updateTopicView() {
         topicTitle.textContent = currentTopic.title;
-        topicDescription.textContent = currentSubTopic.description;
+        topicDescription.textContent = currentTopic.description;
         
-        // Örnekleri göster
-        const example = currentSubTopic.examples[currentExampleIndex];
+        // Önce konunun açıklaması ve örneği
         currentQuestion.innerHTML = `
-            <h4>Örnek ${currentExampleIndex + 1}:</h4>
-            <p>${example.description}</p>
-            <pre>${example.code}</pre>
-            <p>Çıktı: ${example.output}</p>
+            <div class="topic-intro">
+                <h3>Konu Açıklaması:</h3>
+                <p>${currentTopic.description}</p>
+                
+                <h3>Örnek Kullanım:</h3>
+                <div class="example-code">
+                    <pre>${currentSubTopic.examples[0].code}</pre>
+                    <p>Çıktı: ${currentSubTopic.examples[0].output}</p>
+                </div>
+            </div>
+
+            <div class="exercise-section">
+                <h3>Alıştırma ${currentExampleIndex + 1}:</h3>
+                <p class="question">${currentSubTopic.exercises[currentExampleIndex].question}</p>
+                <p class="expected-output">Beklenen Çıktı: ${currentSubTopic.exercises[currentExampleIndex].expectedOutput}</p>
+                <div class="hints">
+                    <p>İpuçları:</p>
+                    <ul>
+                        ${currentSubTopic.exercises[currentExampleIndex].hints.map(hint => `<li>${hint}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
         `;
         
         editor.setValue('');

@@ -15,16 +15,22 @@ nav {
     color: white;
     padding: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .user-info {
+    position: absolute;
+    right: 1rem;
     display: flex;
     gap: 1rem;
 }
@@ -208,4 +214,44 @@ main {
 
 .progress-dot.active {
     background: #4CAF50;
+}
+
+.topic-intro {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.exercise-section {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.question {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.expected-output {
+    background: #e9ecef;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-family: monospace;
+    margin-bottom: 1rem;
+}
+
+.hints {
+    background: #fff3cd;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+.hints ul {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
 } 
